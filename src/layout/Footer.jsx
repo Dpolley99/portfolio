@@ -22,7 +22,7 @@ const Footer = () => {
           {/* Logo & Copyright */}
           <div className="text-center md:text-left">
             <a href="#" className="text-xl font-bold tracking-tight">
-              PM<span className="text-primary">.</span>
+              Deba<span className="text-primary">.</span>
             </a>
             <p className="text-sm text-muted-foreground mt-2">
               © {currentYear} Debarshi Polley. All rights reserved.
