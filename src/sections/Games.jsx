@@ -29,7 +29,6 @@ const games = [
     icon: "🔢",
     component: null, // Will add later
     tags: ["Puzzle", "Logic"],
-    comingSoon: true,
   },
 ];
 
