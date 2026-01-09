@@ -9,6 +9,8 @@ const footerLinks = [
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
+  { href: "#testimonials", label: "Testimonials" },
+  { href: "#games", label: "Games" },
   { href: "#contact", label: "Contact" },
 ];
 
