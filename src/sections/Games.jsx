@@ -27,7 +27,7 @@ const games = [
     title: "Sudoku",
     description: "Number puzzle game with multiple difficulty levels. Coming soon!",
     icon: "🔢",
-    component: null, // Will add later
+    component: Sudoku,
     tags: ["Puzzle", "Logic"],
   },
 ];
