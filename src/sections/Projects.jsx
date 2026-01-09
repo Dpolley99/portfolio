@@ -42,7 +42,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-32 relative overflow-hidden">
+    <section id="projects" className="py-16 md:py-24 relative overflow-hidden">
       {/* Bg glows */}
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
@@ -103,11 +103,18 @@ const Projects = () => {
 
               {/* Content */}
               <div className="p-6 space-y-4">
-                <div className="flex items-start justify-between">
-                  <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                <div className="flex items-center justify-between">
+                  <h3 className="sm:text-m md:text-xl font-semibold group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  {/* <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"/> */}
+                  <div className="md:hidden flex gap-x-3">
+                    <a href={project.link} target="_blank">
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"/>
+                    </a>
+                    <a href={project.github} target="_blank">
+                      <Github className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"/>
+                    </a>
+                  </div>
                 </div>
                 <p className="text-muted-foreground text-sm">
                   {project.description}

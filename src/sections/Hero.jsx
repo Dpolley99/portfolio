@@ -69,7 +69,7 @@ const Hero = () => {
           {/* Left column - text */}
           <div className="space-y-8">
             <div className="animate-fade-in">              
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs md:text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 Software Engineer | Frontend
               </span>
@@ -77,7 +77,7 @@ const Hero = () => {
 
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
                 Building <span className="text-primary glow-text">web/mobile</span>
                 <br />
                 applications with
@@ -86,7 +86,7 @@ const Hero = () => {
                   precision.
                 </span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
+              <p className="text-m md:text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
                 Hi, I'm Debarshi Polley — a software engineer specializing in Frontend web and mobile development. I build scalable, performant applications that users love.
               </p>
             </div>
@@ -107,7 +107,7 @@ const Hero = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
+            <div className="flex items-center gap-2 md:gap-4 animate-fade-in animation-delay-400">
               <span className="text-sm text-muted-foreground">
                 Follow Me:
               </span>
@@ -122,7 +122,7 @@ const Hero = () => {
                   rel="noopener noreferrer"
                   className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
                 >
-                  {<social.icon className="w-5 h-5" />}
+                  {<social.icon className="w-4 h-4 md:w-5 md:h-5" />}
                 </a>
               ))}
             </div>
@@ -159,8 +159,8 @@ const Hero = () => {
 
         {/* Skills Section */}
         <div className="mt-20 animate-fade-in animation-delay-600">
-          <p className="text-sm text-muted-foreground mb-6 text-center">
-            Technologies I work with
+          <p className="text-m text-muted-foreground mb-6 text-center">
+            Technologies I have worked with:
           </p>
           <div className="relative overflow-hidden">
             <div
@@ -171,10 +171,10 @@ const Hero = () => {
               className="absolute right-0 top-0 bottom-0 w-32
              bg-linear-to-l from-background to-transparent z-10"
             />
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-1 justify-center">
               {[...skills].map((skill, idx) => (
-                <div key={idx} className="shrink-0 px-8 py-4">
-                  <span className="text-xl font-semibold text-muted-foreground hover:text-white transition-colors">
+                <div key={idx} className="shrink-0 px-4 py-2">
+                  <span className="text-sm lg:text-xl font-semibold text-foreground md:text-muted-foreground hover:text-white transition-colors">
                     {skill}
                   </span>
                 </div>
