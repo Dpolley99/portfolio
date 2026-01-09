@@ -12,7 +12,7 @@ const games = [
     description: "Classic strategy game with AI opponent. Flip a coin to decide who goes first!",
     icon: "❌⭕",
     component: TicTacToe,
-    tags: ["Strategy", "AI", "2-Player"],
+    tags: ["Strategy", "AI-Player"],
   },
   {
     id: "rps",
@@ -20,7 +20,7 @@ const games = [
     description: "Test your luck against the computer. Best of 5 wins!",
     icon: "✊✋✌️",
     component: RockPaperScissors,
-    tags: ["Chance", "Quick"],
+    tags: ["Chance", "AI-Player"],
   },
   {
     id: "sudoku",
@@ -29,6 +29,15 @@ const games = [
     icon: "🔢",
     component: Sudoku,
     tags: ["Puzzle", "Logic"],
+  },
+  {
+    id: "wordle",
+    title: "Wordle",
+    description: "Guess the hidden word in six tries. A daily word challenge for vocabulary and logic enthusiasts.",
+    icon: "📝",
+    component: null,
+    tags: ["Puzzle", "Word Game", "Logic"],
+    comingSoon: true,
   },
 ];
 
@@ -67,14 +76,14 @@ const Games = () => {
         </div>
 
         {/* Games Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
           {games.map((game, index) => (
             <div
               key={game.id}
               className={`glass rounded-3xl p-8 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 animate-fade-in ${
-                game.comingSoon ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'
-              }`}
-              style={{ animationDelay: `${(index + 3) * 100}ms` }}
+        game.comingSoon ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+      }`}
+              style={{ animationDelay: `${(index + 3) * 100}ms`, width: "320px", height: "320px"}}
               onClick={() => openGame(game)}
             >
               {/* Game Icon */}
