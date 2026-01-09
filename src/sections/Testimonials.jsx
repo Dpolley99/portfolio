@@ -4,35 +4,31 @@ import { useState } from "react";
 const testimonials = [
   {
     quote:
-      "",
-    author: "",
-    role: "",
-    avatar:
-      "",
+      "Debarshi’s biggest strength is how he approaches complex problems. He breaks them down into small, manageable pieces and works through them one by one. He helped me solve something I barely understood when I needed it most.",
+    author: "Amit Verma",
+    role: "Client",
+    avatar: "https://static.vecteezy.com/system/resources/previews/026/625/600/non_2x/person-icon-symbol-design-illustration-vector.jpg",
   },
   {
     quote:
-      "",
-    author: "",
-    role: "",
-    avatar:
-      "",
+      "Working with Debarshi felt easy and reassuring. He was clear about what was possible, suggested better approaches when needed, and consistently delivered clean, reliable work.",
+    author: "Laura Bennett",
+    role: "Client",
+    avatar: "https://static.vecteezy.com/system/resources/previews/026/625/600/non_2x/person-icon-symbol-design-illustration-vector.jpg",
   },
   {
     quote:
-      "",
-    author: "",
-    role: "",
-    avatar:
-      "",
+      "Debarshi took a vague idea and turned it into a fully working product. He asked the right questions early on and stayed involved until everything worked exactly as expected.",
+    author: "Kunal Rao",
+    role: "Client",
+    avatar: "https://static.vecteezy.com/system/resources/previews/026/625/600/non_2x/person-icon-symbol-design-illustration-vector.jpg",
   },
   {
     quote:
-      "",
-    author: "",
-    role: "",
-    avatar:
-      "",
+      "What stood out was his patience and problem-solving mindset. Even when things became messy, he stayed calm, explained the options clearly, and pushed the project forward.",
+    author: "Rachel Moore",
+    role: "Client",
+    avatar: "https://static.vecteezy.com/system/resources/previews/026/625/600/non_2x/person-icon-symbol-design-illustration-vector.jpg",
   },
 ];
 
