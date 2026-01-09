@@ -3,6 +3,7 @@ import { Gamepad2 } from "lucide-react";
 import GameModal from "@/components/GameModal";
 import TicTacToe from "@/components/games/TicTacToe";
 import RockPaperScissors from "@/components/games/RockPaperScissors";
+import Sudoku from "@/components/games/Sudoku";
 
 const games = [
   {
@@ -47,7 +48,7 @@ const Games = () => {
 
   return (
     <section id="games" className="py-32 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 w-200 h-200 bg-highlight/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute top-1/2 left-1/2 w-200 h-120 bg-highlight/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
