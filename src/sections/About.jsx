@@ -48,7 +48,7 @@ const About = () => {
 
             <div className="space-y-4 text-muted-foreground animate-fade-in text-sm animation-delay-200">
               <p>
-                Relatively new to tech, my academic background is in Mechanical Engineering, and I’m a named inventor on a granted patent for Barodont, a wearable dental device designed to prevent barodontalgia. After engineering, I worked as an investment consultant, where I spent time analysing markets, capital allocation, and risk. Over time, I realised I wanted to move closer to building systems myself, which led me to software development.
+                Relatively new to tech, my academic background is in Mechanical Engineering, and I am a named inventor on a granted patent for Barodont, a wearable dental device designed to prevent barodontalgia. Following engineering, I worked as an investment consultant, where I analysed markets, capital allocation, and risk. Through that work, I became increasingly drawn to the underlying systems that translate ideas into real-world outcomes. Software development emerged as the natural convergence of those interests—where design, logic, and execution combine to create scalable impact.
               </p>
               <p>
                At present, I work mainly with TypeScript, JavaScript and React, building frontend-focused applications that integrate APIs and backend services like Appwrite. My recent projects include API-driven web apps, user-authenticated native applications, and interactive browser-based games. I’ve also started incorporating automated testing with Jest and Vitest, along with basic CI/CD workflows using GitHub Actions, as I move toward more production-ready development.
