@@ -60,7 +60,7 @@ const Projects = () => {
             </span>
           </h2>
           <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            A selection of my recent work, from mobile applications to innovative tools using the most up-to-date technologies.
+            A selection of my recent work, from native mobile applications to innovative web applications using the most up-to-date technologies.
           </p>
         </div>
 
@@ -81,7 +81,7 @@ const Projects = () => {
                 />
                 <div
                   className="absolute inset-0 
-                bg-gradient-to-t from-card via-card/50
+                bg-linear-to-t from-card via-card/50
                  to-transparent opacity-60"
                 />
                 {/* Overlay Links */}
