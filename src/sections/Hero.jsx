@@ -158,7 +158,7 @@ const Hero = () => {
         </div>
 
         {/* Skills Section */}
-        <div className="mt-20 animate-fade-in animation-delay-600">
+        <div className="mt-14 animate-fade-in animation-delay-600">
           <p className="text-m text-muted-foreground mb-6 text-center">
             Technologies I have worked with:
           </p>
