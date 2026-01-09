@@ -77,7 +77,7 @@ const Hero = () => {
 
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
+              <h1 className="text-4xl md:text-5xl xl:text-5xl font-bold leading-tight animate-fade-in animation-delay-100">
                 Building <span className="text-primary glow-text">web/mobile</span>
                 <br />
                 applications with
