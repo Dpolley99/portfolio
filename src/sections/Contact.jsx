@@ -221,10 +221,10 @@ const Contact = () => {
                       <item.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-xs md:text-sm text-muted-foreground">
                         {item.label}
                       </div>
-                      <div className="font-medium">{item.value}</div>
+                      <div className="font-medium text-xs md:text-lg">{item.value}</div>
                     </div>
                   </a>
                 ))}
