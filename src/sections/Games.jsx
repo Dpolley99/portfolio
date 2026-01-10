@@ -39,6 +39,16 @@ const games = [
     component: WordleGame,
     tags: ["Puzzle", "Word Game", "Logic"],
   },
+  {
+    id: "minesweeper",
+    title: "Minesweeper",
+    description: "Classic grid-based puzzle game focused on logical deduction and risk assessment.",
+    icon: "💣",
+    component: null,
+    tags: ["Puzzle", "Logic"],
+    comingSoon: true
+  },
+
 ];
 
 const Games = () => {
@@ -83,7 +93,7 @@ const Games = () => {
               className={`glass rounded-3xl p-8 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 lg:hover:scale-102 animate-fade-in ${
         game.comingSoon ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
       }`}
-              style={{ animationDelay: `${(index + 3) * 100}ms`, width: "320px", height: "320px"}}
+              style={{ animationDelay: `${(index + 3) * 100}ms`, width: "330px", height: "330px"}}
               onClick={() => openGame(game)}
             >
               {/* Game Icon */}
@@ -92,10 +102,10 @@ const Games = () => {
               </div>
 
               {/* Game Title */}
-              <h3 className="text-xl font-bold mb-3 text-center">
+              <h3 className="text-xl font-bold mb-3 text-center justify-items-center">
                 {game.title}
                 {game.comingSoon && (
-                  <span className="ml-2 text-xs bg-primary/20 text-primary px-2 py-1 rounded-full">
+                  <span className="m-2 text-xs flex justify-center max-w-30 bg-primary/20 text-primary px-3 py-2 rounded-full">
                     Coming Soon
                   </span>
                 )}
