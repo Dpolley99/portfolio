@@ -1,6 +1,6 @@
 import {
   Mail,
-  Phone,
+  Linkedin,
   MapPin,
   Send,
   CheckCircle,
@@ -17,9 +17,9 @@ const contactInfo = [
     value: "debarshipolley.uk@gmail.com",
   },
   {
-    icon: Phone,
-    label: "Phone",
-    value: "+44 7407750353",
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "Debarshi Polley",
   },
   {
     icon: MapPin,
