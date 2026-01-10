@@ -50,7 +50,7 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="py-32 relative">
       <div
-        className="absolute top-1/2 left-3/10 w-200 h-200 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 overflow-visible"
+        className="absolute top-1/2 right-3/10 w-200 h-200 bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 overflow-visible"
       />
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
