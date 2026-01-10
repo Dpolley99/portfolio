@@ -38,14 +38,14 @@ const Hero = () => {
 
       <div className="absolute inset-0">
         <img
-          src="/hero-bg.jpg"
+          src="/bg-hero-03.jpg"
           alt="Hero image"
           className="w-full h-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/80 to-background" />
       </div>
 
-      {/* Green Dots */}
+      {/* Floating Dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(35)].map((_, i) => (
           <div
@@ -77,7 +77,7 @@ const Hero = () => {
 
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl xl:text-5xl font-bold leading-tight animate-fade-in animation-delay-100">
+              <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold leading-tight animate-fade-in animation-delay-100">
                 Building <span className="text-primary glow-text">web/mobile</span>
                 <br />
                 applications with
@@ -87,7 +87,7 @@ const Hero = () => {
                 </span>
               </h1>
               <p className="text-m md:text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                Hi, I'm Debarshi Polley — a software engineer specializing in Frontend web and mobile development. I build scalable, performant applications that users love.
+                Hi, I'm <span className="font-semibold text-foreground/80">Debarshi Polley</span> — a software engineer specializing in Frontend web and mobile development. I build scalable, performant applications that users love.
               </p>
             </div>
             
@@ -138,7 +138,7 @@ const Hero = () => {
                 {/* Floating Badge */}
                 <div className="absolute -bottom-4 -left-4 glass rounded-xl px-4 py-3 animate-float">
                   <div className="flex items-center gap-3">
-                    <div className="w-2.5 h-2.5 md:w-3 md:h-3 bg-green-500 rounded-full animate-pulse" />
+                    <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
                     <span className="text-xs font-medium">Available for Work</span>
                   </div>
                 </div>

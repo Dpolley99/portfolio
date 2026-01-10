@@ -4,12 +4,13 @@ import GameModal from "@/components/GameModal";
 import TicTacToe from "@/components/games/TicTacToe";
 import RockPaperScissors from "@/components/games/RockPaperScissors";
 import Sudoku from "@/components/games/Sudoku";
+import WordleGame from "../components/games/Wordle";
 
 const games = [
   {
     id: "tictactoe",
     title: "Tic Tac Toe",
-    description: "Classic strategy game with AI opponent. Flip a coin to decide who goes first!",
+    description: "Classic strategy game with AI opponent.",
     icon: "❌⭕",
     component: TicTacToe,
     tags: ["Strategy", "AI-Player"],
@@ -33,11 +34,10 @@ const games = [
   {
     id: "wordle",
     title: "Wordle",
-    description: "Guess the hidden word in six tries. A daily word challenge for vocabulary and logic enthusiasts.",
+    description: "Guess the hidden word in six tries. A word challenge for vocabulary.",
     icon: "📝",
-    component: null,
+    component: WordleGame,
     tags: ["Puzzle", "Word Game", "Logic"],
-    comingSoon: true,
   },
 ];
 
@@ -56,7 +56,7 @@ const Games = () => {
 
   return (
     <section id="games" className="py-32 relative">
-      <div className="absolute top-3/5 left-1/2 w-200 h-150 bg-highlight/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute top-1/2 left-1/2 w-150 h-120 bg-highlight/7 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
@@ -71,7 +71,7 @@ const Games = () => {
             </span>
           </h2>
           <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            If you’ve made it this far, thank you for your time. I build these mini-games to sharpen my problem-solving skills and to practice backend logic as I move toward full-stack development. Feel free to explore and play around—I hope you enjoy them.
+            Hey... If you’ve made it this far, let me take a moment and thank you for visiting. I build these mini-games to sharpen my problem-solving skills and to practice backend logic as I aspire to move towards full-stack development soon. Feel free to explore and play around—I hope you enjoy them.
           </p>
         </div>
 
@@ -80,7 +80,7 @@ const Games = () => {
           {games.map((game, index) => (
             <div
               key={game.id}
-              className={`glass rounded-3xl p-8 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 animate-fade-in ${
+              className={`glass rounded-3xl p-8 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 lg:hover:scale-102 animate-fade-in ${
         game.comingSoon ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
       }`}
               style={{ animationDelay: `${(index + 3) * 100}ms`, width: "320px", height: "320px"}}

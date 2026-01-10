@@ -327,7 +327,7 @@ const Sudoku = () => {
       </div>
 
       {/* Number Pad */}
-      <div className="grid grid-cols-5 gap-2 max-w-md mx-auto">
+      <div className="grid grid-cols-5 gap-2 max-w-md justify-center mx-auto">
         {[...Array(gridSize)].map((_, i) => (
           <button
             key={i + 1}
@@ -347,7 +347,7 @@ const Sudoku = () => {
             !selectedCell || isComplete ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
           }`}
         >
-          Clear
+          C
         </button>
       </div>
     </div>

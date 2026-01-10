@@ -89,7 +89,7 @@ const Testimonials = () => {
                 <Quote className="w-6 h-6 text-primary-foreground" />
               </div>
 
-              <blockquote className="text-sm md:text-2xl font-light md:font-medium leading-relaxed mb-8 pt-4">
+              <blockquote className="text-md md:text-xl font-light leading-relaxed mb-8 pt-4">
                 "{testimonials[activeIdx].quote}"
               </blockquote>
 
