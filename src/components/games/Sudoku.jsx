@@ -229,8 +229,8 @@ const Sudoku = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h3 className="text-2xl font-bold">
-            Sudoku - {difficulty === 'easy' ? 'Easy' : 'Hard'}
+          <h3 className="text-2xl font-bold items-center">
+            Sudoku <span className='text-sm'>- {difficulty === 'easy' ? 'Easy' : 'Hard'}</span>
           </h3>
           <p className="text-sm text-muted-foreground">
             {gridSize}×{gridSize} Grid
@@ -238,7 +238,7 @@ const Sudoku = () => {
         </div>
         <button
           onClick={resetGame}
-          className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:opacity-90 transition"
+          className="flex text-xs items-center gap-2 bg-primary text-primary-foreground px-4 py-3 rounded-lg hover:opacity-90 transition"
         >
           <RotateCcw size={16} />
           Change Level
@@ -289,7 +289,7 @@ const Sudoku = () => {
       {/* Sudoku Grid */}
       <div className="mb-6 overflow-x-auto flex justify-center">
         <div 
-          className="inline-grid gap-0 bg-border p-1 rounded-lg mx-auto"
+          className="inline-grid gap-0 bg-border p-0.5 rounded-sm lg:rounded-lg mx-auto"
           style={{
             gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
           }}
@@ -308,7 +308,7 @@ const Sudoku = () => {
                   key={`${rowIndex}-${colIndex}`}
                   onClick={() => handleCellClick(rowIndex, colIndex)}
                   className={`
-                    ${gridSize === 4 ? 'w-16 h-16 text-2xl' : 'w-10 h-10 text-lg'}
+                    ${gridSize === 4 ? 'w-16 h-16 text-2xl' : 'w-9 h-9 text-md'}
                     font-bold transition-all
                     ${isInitial ? 'bg-surface cursor-not-allowed' : 'glass cursor-pointer hover:bg-primary/10'}
                     ${isSelected ? 'ring-2 ring-primary' : ''}
