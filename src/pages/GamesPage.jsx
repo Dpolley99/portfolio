@@ -1,12 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Gamepad2 } from 'lucide-react';
 import { gamesData } from '../data/gamesData';
 import GameModal from "@/components/GameModal";
-import TicTacToe from "@/components/games/TicTacToe";
-import RockPaperScissors from "@/components/games/RockPaperScissors";
-import Sudoku from "@/components/games/Sudoku";
-import WordleGame from "@/components/games/Wordle";
-import Minesweeper from "@/components/games/Minesweeper";
 
 function GamesPage() {
   const [activeGame, setActiveGame] = useState(null);
@@ -21,8 +16,12 @@ function GamesPage() {
     setActiveGame(null);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <section id="games" className="py-32 relative">
+    <section id="games" className="py-24 relative">
       <div className="absolute top-1/2 left-1/2 w-150 h-120 bg-highlight/7 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">

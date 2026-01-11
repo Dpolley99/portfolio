@@ -30,7 +30,7 @@ const Navbar = () => {
     <header className={`fixed top-0 left-0 right-0 transition-all duration-400 z-50 ${ isScrolled ? 'bg-background/95 backdrop-blur-lg shadow-lg pb-4' : 'bg-transparent'}`}>
       <nav className="container mx-auto px-6 flex items-center justify-between mt-5">
         <a
-          href="#"
+          href="/"
           className="text-xl font-bold tracking-tight hover:text-primary"
         >
           Deba<span className="text-primary">.</span>
