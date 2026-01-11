@@ -1,29 +1,28 @@
-import Navbar from "./components/layout/Navbar"
-import Hero from "./sections/Hero"
-import About from "./sections/About"
-import Projects from "./sections/Projects"
-import Experience from "./sections/Experience"
-import Testimonials from "./sections/Testimonials"
-import Games from "./sections/Games"
-import Contact from "./sections/Contact"
-import Footer from "./components/layout/Footer"
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import HomePage from './pages/HomePage';
+import GamesPage from './pages/GamesPage';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
+import './index.css';
 
 function App() {
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Experience />
-        <Testimonials />
-        <Games />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  )
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/games" element={<GamesPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogPostPage />} />
+          <Route path="*" element={<div>404 - Page Not Found</div>} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

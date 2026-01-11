@@ -1,8 +1,11 @@
 ---
-id: 1
-title: "My First Blog Post"
+id: "blog-001"
+title: "Test Blog Post"
 date: "2026-01-10"
-excerpt: "A short description..."
+excerpt: "A brief description of what this post is about"
+tags: ["React", "JavaScript", "Web Development"]
 ---
 
-# Blog content here...
+# Your Blog Title
+
+Blog content...
