@@ -11,10 +11,10 @@ function HomePage() {
     <div className="home-page">
       <Hero />
       <About />
-      <Experience />
       <Projects />
-      <Games />
+      <Experience />
       <Testimonials />
+      <Games />
       <Contact />
     </div>
   );

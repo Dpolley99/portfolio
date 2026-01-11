@@ -8,7 +8,7 @@ const Games = () => {
   const [activeGame, setActiveGame] = useState(null);
 
   // Show only last 2 games
-  const featuredGames = gamesData.slice(-2);
+  const featuredGames = gamesData.slice(0, 2);
 
   const openGame = (game) => {
     if (!game.comingSoon) {

@@ -45,9 +45,10 @@ function BlogPage() {
               Posts
             </span>
           </h1>
-          <p className="text-muted-foreground animation-delay-200">
-            Thoughts, tutorials, and insights on web development and technology.
+          <p className="text-muted-foreground animation-delay-200 max-w-3xl mx-auto">
+            This space is where I reflect on what I’m building and learning. I write about software development through hands-on projects—exploring design decisions, problem-solving approaches, and the small details that tend to matter over time. Some posts are technical, others are reflective, but all of them come from building things end to end.
           </p>
+
         </div>
 
         {/* Blog Posts List */}

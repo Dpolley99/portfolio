@@ -44,7 +44,7 @@ function GamesPage() {
 
         {/* Games Grid */}
         <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-          {[...gamesData].reverse().map((game, index) => (
+          {gamesData.map((game, index) => (
             <div
               key={game.id}
               className={`glass rounded-3xl p-8 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 lg:hover:scale-102 animate-fade-in ${
