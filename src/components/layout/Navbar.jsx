@@ -1,20 +1,20 @@
-import { Button } from "@/components/Button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  {href: "/#about", label: "About Me"},
+  { href: "/#about", label: "About Me" },
   { href: "/#projects", label: "Projects" },
   { href: "/#experience", label: "Experience" },
   { href: "/#testimonials", label: "Testimonials" },
   { href: "/#games", label: "Games" },
+  { href: "/blog", label: "Blog" },
 ];
 
 const Navbar = () => {
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,72 +22,81 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <header className={`fixed top-0 left-0 right-0 transition-all duration-400 z-50 ${ isScrolled ? 'bg-background/95 backdrop-blur-lg shadow-lg pb-4' : 'bg-transparent'}`}>
-      <nav className="container mx-auto px-6 flex items-center justify-between mt-5">
-        <a
-          href="/"
-          className="text-xl font-bold tracking-tight hover:text-primary"
-        >
-          Deba<span className="text-primary">.</span>
-        </a>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-background/95 backdrop-blur-lg shadow-lg" : "bg-transparent"
+      }`}
+    >
+      <nav className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="text-xl font-bold tracking-tight hover:text-primary transition-colors"
+          >
+            Deba<span className="text-primary">.</span>
+          </Link>
 
-        {/*Desktop navbar*/}
-        <div className="hidden md:flex items-center gap-1">
-          <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
-            {navLinks.map((link, index) => (
-              <a
-                href={link.href}
-                key={index}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface"
-              >
-                {link.label}
-              </a>
-            ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center">
+            <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface transition-colors whitespace-nowrap"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-
-        {/* CTA Button */}
-        {/* <div className="hidden md:block">
-          <Button size="sm">Contact Me</Button>
-        </div> */}
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 text-foreground cursor-pointer"
-          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </nav>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden glass-strong animate-fade-in">
-          <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-            {navLinks.map((link, index) => (
-              <a
-                href={link.href}
-                key={index}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg text-muted-foreground hover:text-foreground py-2"
-              >
-                {link.label}
-              </a>
-            ))}
-
-            {/* <Button onClick={() => setIsMobileMenuOpen(false)}>
-              Contact Me
-            </Button> */}
+        <div className="md:hidden glass-strong overflow-hidden border-t border-primary/20 animate-fade-in">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-6">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={handleLinkClick}
+                  className="px-4 py-3 text-base text-muted-foreground hover:text-foreground hover:bg-surface rounded-lg transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       )}
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
