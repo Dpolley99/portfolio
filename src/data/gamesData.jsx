@@ -48,7 +48,7 @@ export const gamesData = [
     icon: "💣",
     component: Minesweeper,
     tags: ["Puzzle", "Logic"],
-    comingSoon: false
+    comingSoon: true
   },
 
 ];
