@@ -1,4 +1,6 @@
-import { Code2, Lightbulb, Rocket, Users } from "lucide-react";
+import { Code2, Lightbulb, Rocket, Users, BookOpen } from "lucide-react";
+import { Link } from 'react-router-dom';
+import { Button } from "../Button";
 
 const highlights = [
   {
@@ -68,23 +70,35 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right column */}
-          <div className="grid sm:grid-cols-2 gap-6">
-            {highlights.map((item, idx) => (
-              <div
-                key={idx}
-                className="glass p-6 rounded-2xl animate-fade-in"
-                style={{ animationDelay: `${(idx + 1) * 100}ms` }}
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 hover:bg-primary/20">
-                  <item.icon className="w-6 h-6 text-primary" />
+          <div>
+            {/* Right column */}
+            <div className="grid sm:grid-cols-2 gap-6">
+              {highlights.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="glass p-6 rounded-2xl animate-fade-in"
+                  style={{ animationDelay: `${(idx + 1) * 100}ms` }}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 hover:bg-primary/20">
+                    <item.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+              ))}            
+            </div>
+
+            {/* Read My Blog button */}
+            <div className="flex flex-1 mt-15 justify-center">
+              <Link to="/blog">
+                <Button size="lg" className="items-center justify-center">
+                  <BookOpen className="w-5 h-5" />
+                  View My Blog
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
