@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RotateCcw, Coins } from 'lucide-react';
+import { RotateCcw, Coins, Users, Bot } from 'lucide-react';
 
 const TicTacToe = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -9,10 +9,12 @@ const TicTacToe = () => {
   const [gameOver, setGameOver] = useState(false);
   const [playerSymbol, setPlayerSymbol] = useState(null);
   const [computerSymbol, setComputerSymbol] = useState(null);
-  const [showCoinFlip, setShowCoinFlip] = useState(true);
+  const [showCoinFlip, setShowCoinFlip] = useState(false);
   const [coinFlipping, setCoinFlipping] = useState(false);
   const [coinResult, setCoinResult] = useState(null);
   const [playerChoice, setPlayerChoice] = useState(null);
+  const [gameMode, setGameMode] = useState(null); // null, 'computer', or 'friend'
+  const [currentPlayer, setCurrentPlayer] = useState('X'); // For 2-player mode
 
   useEffect(() => {
     const saved = localStorage.getItem('tictactoe-scores');
@@ -26,10 +28,23 @@ const TicTacToe = () => {
   }, [scores]);
 
   useEffect(() => {
-    if (!isPlayerTurn && !winner && !gameOver && playerSymbol && computerSymbol) {
+    if (gameMode === 'computer' && !isPlayerTurn && !winner && !gameOver && playerSymbol && computerSymbol) {
       setTimeout(() => makeComputerMove(board), 500);
     }
-  }, [isPlayerTurn, winner, gameOver, playerSymbol, computerSymbol]);
+  }, [isPlayerTurn, winner, gameOver, playerSymbol, computerSymbol, gameMode]);
+
+  const selectGameMode = (mode) => {
+    setGameMode(mode);
+    if (mode === 'computer') {
+      setShowCoinFlip(true);
+    } else {
+      // Friend mode - X always starts
+      setPlayerSymbol('X');
+      setComputerSymbol('O');
+      setCurrentPlayer('X');
+      setIsPlayerTurn(true);
+    }
+  };
 
   const flipCoin = (choice) => {
     setPlayerChoice(choice);
@@ -138,16 +153,34 @@ const TicTacToe = () => {
   };
 
   const handleCellClick = (index) => {
-    if (board[index] || !isPlayerTurn || winner || gameOver) return;
+    if (board[index] || winner || gameOver) return;
 
-    const newBoard = [...board];
-    newBoard[index] = playerSymbol;
-    setBoard(newBoard);
-    setIsPlayerTurn(false);
+    if (gameMode === 'computer') {
+      // Computer mode - original logic
+      if (!isPlayerTurn) return;
+      
+      const newBoard = [...board];
+      newBoard[index] = playerSymbol;
+      setBoard(newBoard);
+      setIsPlayerTurn(false);
 
-    const result = checkWinner(newBoard);
-    if (result) {
-      handleGameEnd(result);
+      const result = checkWinner(newBoard);
+      if (result) {
+        handleGameEnd(result);
+      }
+    } else {
+      // Friend mode - alternate between X and O
+      const newBoard = [...board];
+      newBoard[index] = currentPlayer;
+      setBoard(newBoard);
+
+      const result = checkWinner(newBoard);
+      if (result) {
+        handleGameEnd(result);
+      } else {
+        // Switch to other player
+        setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
+      }
     }
   };
 
@@ -155,12 +188,23 @@ const TicTacToe = () => {
     setWinner(result);
     setGameOver(true);
     
-    if (result === playerSymbol) {
-      setScores(prev => ({ ...prev, wins: prev.wins + 1 }));
-    } else if (result === computerSymbol) {
-      setScores(prev => ({ ...prev, losses: prev.losses + 1 }));
-    } else if (result === 'draw') {
-      setScores(prev => ({ ...prev, draws: prev.draws + 1 }));
+    if (gameMode === 'computer') {
+      if (result === playerSymbol) {
+        setScores(prev => ({ ...prev, wins: prev.wins + 1 }));
+      } else if (result === computerSymbol) {
+        setScores(prev => ({ ...prev, losses: prev.losses + 1 }));
+      } else if (result === 'draw') {
+        setScores(prev => ({ ...prev, draws: prev.draws + 1 }));
+      }
+    } else {
+      // Friend mode - just track draws, wins for X and O
+      if (result === 'draw') {
+        setScores(prev => ({ ...prev, draws: prev.draws + 1 }));
+      } else if (result === 'X') {
+        setScores(prev => ({ ...prev, wins: prev.wins + 1 }));
+      } else if (result === 'O') {
+        setScores(prev => ({ ...prev, losses: prev.losses + 1 }));
+      }
     }
   };
 
@@ -170,11 +214,13 @@ const TicTacToe = () => {
     setGameOver(false);
     setPlayerSymbol(null);
     setComputerSymbol(null);
-    setShowCoinFlip(true);
+    setShowCoinFlip(false);
     setCoinFlipping(false);
     setCoinResult(null);
     setPlayerChoice(null);
     setIsPlayerTurn(false);
+    setGameMode(null);
+    setCurrentPlayer('X');
   };
 
   const resetScores = () => {
@@ -182,6 +228,39 @@ const TicTacToe = () => {
     localStorage.setItem('tictactoe-scores', JSON.stringify({ wins: 0, losses: 0, draws: 0 }));
   };
 
+  // Game Mode Selection Screen
+  if (!gameMode) {
+    return (
+      <div className="flex items-center justify-center min-h-125">
+        <div className="text-center max-w-md w-full">
+          <h2 className="text-3xl font-bold mb-2">Tic Tac Toe</h2>
+          <p className="text-muted-foreground mb-8">Choose your game mode</p>
+          
+          <div className="grid grid-cols-1 gap-4">
+            <button
+              onClick={() => selectGameMode('computer')}
+              className="glass p-8 rounded-xl hover:bg-primary/10 transition group"
+            >
+              <Bot className="w-16 h-16 mx-auto mb-4 text-primary group-hover:scale-110 transition" />
+              <h3 className="text-xl font-bold mb-2">Play with Deba</h3>
+              <p className="text-sm text-muted-foreground">Challenge AI Deba</p>
+            </button>
+            
+            <button
+              onClick={() => selectGameMode('friend')}
+              className="glass p-8 rounded-xl hover:bg-highlight/10 transition group"
+            >
+              <Users className="w-16 h-16 mx-auto mb-4 text-highlight group-hover:scale-110 transition" />
+              <h3 className="text-xl font-bold mb-2">Play with your Friend</h3>
+              <p className="text-sm text-muted-foreground">Local 2-player mode</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Coin Flip Screen (Computer mode only)
   if (showCoinFlip) {
     return (
       <div className="flex items-center justify-center min-h-125">
@@ -236,11 +315,18 @@ const TicTacToe = () => {
     );
   }
 
+  // Game Board
   return (
     <div className="max-w-md mx-auto">
-      <p className="text-center text-muted-foreground mb-6">
-        You are <span className="font-bold text-primary">{playerSymbol}</span>, Computer is <span className="font-bold text-highlight">{computerSymbol}</span>
-      </p>
+      {gameMode === 'computer' ? (
+        <p className="text-center text-muted-foreground mb-6">
+          You are <span className="font-bold text-primary">{playerSymbol}</span>, Computer is <span className="font-bold text-highlight">{computerSymbol}</span>
+        </p>
+      ) : (
+        <p className="text-center text-muted-foreground mb-6">
+          Current Turn: <span className="font-bold text-primary">{currentPlayer}</span>
+        </p>
+      )}
       
       <div className="glass rounded-lg p-4 mb-6">
         <div className="flex justify-between items-center mb-2">
@@ -256,11 +342,15 @@ const TicTacToe = () => {
         <div className="grid grid-cols-3 gap-2 text-center">
           <div className="bg-green-500/10 rounded p-2">
             <div className="text-2xl font-bold text-green-500">{scores.wins}</div>
-            <div className="text-xs text-muted-foreground">Wins</div>
+            <div className="text-xs text-muted-foreground">
+              {gameMode === 'computer' ? 'Wins' : 'X Wins'}
+            </div>
           </div>
           <div className="bg-red-500/10 rounded p-2">
             <div className="text-2xl font-bold text-red-500">{scores.losses}</div>
-            <div className="text-xs text-muted-foreground">Losses</div>
+            <div className="text-xs text-muted-foreground">
+              {gameMode === 'computer' ? 'Losses' : 'O Wins'}
+            </div>
           </div>
           <div className="bg-muted/50 rounded p-2">
             <div className="text-2xl font-bold">{scores.draws}</div>
@@ -271,12 +361,19 @@ const TicTacToe = () => {
 
       {winner && (
         <div className={`text-center mb-4 p-3 rounded-lg ${
-          winner === playerSymbol ? 'bg-green-500/10 text-green-500' :
-          winner === computerSymbol ? 'bg-red-500/10 text-red-500' :
-          'bg-muted/50'
+          gameMode === 'computer' 
+            ? (winner === playerSymbol ? 'bg-green-500/10 text-green-500' :
+               winner === computerSymbol ? 'bg-red-500/10 text-red-500' :
+               'bg-muted/50')
+            : (winner === 'X' ? 'bg-green-500/10 text-green-500' :
+               winner === 'O' ? 'bg-red-500/10 text-red-500' :
+               'bg-muted/50')
         }`}>
           <p className="text-xl font-bold">
-            {winner === playerSymbol ? '🎉 You Win!' : winner === computerSymbol ? '💻 Computer Wins!' : "It's a Draw!"}
+            {gameMode === 'computer' 
+              ? (winner === playerSymbol ? '🎉 You Win!' : winner === computerSymbol ? '💻 Computer Wins!' : "It's a Draw!")
+              : (winner === 'draw' ? "It's a Draw!" : `🎉 Player ${winner} Wins!`)
+            }
           </p>
         </div>
       )}
@@ -290,8 +387,8 @@ const TicTacToe = () => {
               cell === 'X' ? 'bg-red-500/20 text-red-500' :
               cell === 'O' ? 'bg-blue-500/20 text-blue-500' :
               'glass hover:bg-primary/10'
-            } ${!cell && isPlayerTurn && !gameOver ? 'cursor-pointer' : 'cursor-not-allowed'} shadow-md`}
-            disabled={!isPlayerTurn || gameOver || cell !== null}
+            } ${!cell && !gameOver ? 'cursor-pointer' : 'cursor-not-allowed'} shadow-md`}
+            disabled={gameOver || cell !== null}
           >
             {cell}
           </button>
@@ -302,7 +399,7 @@ const TicTacToe = () => {
         onClick={resetGame}
         className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-semibold hover:opacity-90 transition shadow-lg"
       >
-        New Game (Flip Coin Again)
+        {gameMode === 'computer' ? 'New Game (Change Mode)' : 'New Game (Change Mode)'}
       </button>
     </div>
   );

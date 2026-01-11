@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button";
-import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
+import { AnimatedBorderButton } from "../AnimatedBorderButton";
 import {
   ArrowRight,
   MapPin,

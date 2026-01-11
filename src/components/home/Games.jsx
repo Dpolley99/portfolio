@@ -4,7 +4,8 @@ import GameModal from "@/components/GameModal";
 import TicTacToe from "@/components/games/TicTacToe";
 import RockPaperScissors from "@/components/games/RockPaperScissors";
 import Sudoku from "@/components/games/Sudoku";
-import WordleGame from "../components/games/Wordle";
+import WordleGame from "../games/Wordle";
+import Minesweeper from "../games/Minesweeper";
 
 const games = [
   {
@@ -14,6 +15,7 @@ const games = [
     icon: "❌⭕",
     component: TicTacToe,
     tags: ["Strategy", "AI-Player"],
+    comingSoon: false
   },
   {
     id: "rps",
@@ -22,6 +24,7 @@ const games = [
     icon: "✊✋✌️",
     component: RockPaperScissors,
     tags: ["Chance", "AI-Player"],
+    comingSoon: false
   },
   {
     id: "sudoku",
@@ -30,6 +33,7 @@ const games = [
     icon: "🔢",
     component: Sudoku,
     tags: ["Puzzle", "Logic"],
+    comingSoon: false
   },
   {
     id: "wordle",
@@ -38,15 +42,16 @@ const games = [
     icon: "📝",
     component: WordleGame,
     tags: ["Puzzle", "Word Game", "Logic"],
+    comingSoon: false
   },
   {
     id: "minesweeper",
     title: "Minesweeper",
     description: "Classic grid-based puzzle game focused on logical deduction and risk assessment.",
     icon: "💣",
-    component: null,
+    component: Minesweeper,
     tags: ["Puzzle", "Logic"],
-    comingSoon: true
+    comingSoon: false
   },
 
 ];

@@ -30,7 +30,9 @@ const About = () => {
   return (
     <section id="about" className="py-16 relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="absolute bottom-1/6 left-1/12 w-120 h-120 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/6 left-1/12 w-100 h-100 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/6 left-1/12 w-120 h-120 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column */}
           <div className="space-y-8">
