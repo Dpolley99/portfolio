@@ -1,63 +1,14 @@
 import { useState } from "react";
-import { Gamepad2 } from "lucide-react";
+import { Gamepad2, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import GameModal from "@/components/GameModal";
-import TicTacToe from "@/components/games/TicTacToe";
-import RockPaperScissors from "@/components/games/RockPaperScissors";
-import Sudoku from "@/components/games/Sudoku";
-import WordleGame from "../games/Wordle";
-import Minesweeper from "../games/Minesweeper";
-
-const games = [
-  {
-    id: "tictactoe",
-    title: "Tic Tac Toe",
-    description: "Classic strategy game with AI opponent.",
-    icon: "❌⭕",
-    component: TicTacToe,
-    tags: ["Strategy", "AI-Player"],
-    comingSoon: false
-  },
-  {
-    id: "rps",
-    title: "Rock Paper Scissors",
-    description: "Test your luck against the computer. Best of 5 wins!",
-    icon: "✊✋✌️",
-    component: RockPaperScissors,
-    tags: ["Chance", "AI-Player"],
-    comingSoon: false
-  },
-  {
-    id: "sudoku",
-    title: "Sudoku",
-    description: "Number puzzle game with multiple difficulty levels. Coming soon!",
-    icon: "🔢",
-    component: Sudoku,
-    tags: ["Puzzle", "Logic"],
-    comingSoon: false
-  },
-  {
-    id: "wordle",
-    title: "Wordle",
-    description: "Guess the hidden word in six tries. A word challenge for vocabulary.",
-    icon: "📝",
-    component: WordleGame,
-    tags: ["Puzzle", "Word Game", "Logic"],
-    comingSoon: false
-  },
-  {
-    id: "minesweeper",
-    title: "Minesweeper",
-    description: "Classic grid-based puzzle game focused on logical deduction and risk assessment.",
-    icon: "💣",
-    component: Minesweeper,
-    tags: ["Puzzle", "Logic"],
-    comingSoon: false
-  },
-
-];
+import { gamesData } from "@/data/gamesData";
 
 const Games = () => {
   const [activeGame, setActiveGame] = useState(null);
+
+  // Show only last 2 games
+  const featuredGames = gamesData.slice(-2);
 
   const openGame = (game) => {
     if (!game.comingSoon) {
@@ -86,27 +37,25 @@ const Games = () => {
             </span>
           </h2>
           <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            Hey... If you’ve made it this far, let me take a moment and thank you for visiting. I build these mini-games to sharpen my problem-solving skills and to practice backend logic as I aspire to move towards full-stack development soon. Feel free to explore and play around—I hope you enjoy them.
+            Hey... If you've made it this far, let me take a moment and thank you for visiting. I build these mini-games to sharpen my problem-solving skills and to practice backend logic as I aspire to move towards full-stack development soon. Feel free to explore and play around—I hope you enjoy them.
           </p>
         </div>
 
         {/* Games Grid */}
         <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-          {games.map((game, index) => (
+          {/* Featured Games */}
+          {featuredGames.map((game, index) => (
             <div
               key={game.id}
               className={`glass rounded-3xl p-8 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 lg:hover:scale-102 animate-fade-in ${
-        game.comingSoon ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
-      }`}
-              style={{ animationDelay: `${(index + 3) * 100}ms`, width: "330px", height: "330px"}}
+                game.comingSoon ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+              }`}
+              style={{ animationDelay: `${(index + 3) * 100}ms`, width: "330px", height: "330px" }}
               onClick={() => openGame(game)}
             >
-              {/* Game Icon */}
               <div className="text-6xl mb-4 text-center">
                 {game.icon}
               </div>
-
-              {/* Game Title */}
               <h3 className="text-xl font-bold mb-3 text-center justify-items-center">
                 {game.title}
                 {game.comingSoon && (
@@ -115,13 +64,9 @@ const Games = () => {
                   </span>
                 )}
               </h3>
-
-              {/* Game Description */}
               <p className="text-muted-foreground text-sm mb-4 text-center">
                 {game.description}
               </p>
-
-              {/* Tags */}
               <div className="flex flex-wrap gap-2 justify-center">
                 {game.tags.map((tag) => (
                   <span
@@ -132,8 +77,6 @@ const Games = () => {
                   </span>
                 ))}
               </div>
-
-              {/* Play Button */}
               {!game.comingSoon && (
                 <div className="mt-6 text-center">
                   <button className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium">
@@ -144,6 +87,26 @@ const Games = () => {
               )}
             </div>
           ))}
+
+          {/* See All Games Card */}
+          <Link to="/games">
+            <div
+              className="glass rounded-3xl p-8 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 lg:hover:scale-102 animate-fade-in cursor-pointer flex flex-col items-center justify-center"
+              style={{ animationDelay: "500ms", width: "330px", height: "330px" }}
+            >
+              <Gamepad2 className="w-20 h-20 text-primary mb-6" />
+              <h3 className="text-2xl font-bold mb-4 text-center">
+                See All Games
+              </h3>
+              <p className="text-muted-foreground text-sm mb-6 text-center">
+                Explore all {gamesData.length} games in my collection
+              </p>
+              <button className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:scale-105 transition-all duration-300">
+                View All
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+          </Link>
         </div>
       </div>
 
