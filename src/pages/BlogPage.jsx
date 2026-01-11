@@ -8,6 +8,9 @@ function BlogPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
     async function loadPosts() {
       try {
         const allPosts = await getAllBlogPosts();
@@ -28,10 +31,6 @@ function BlogPage() {
       </div>
     );
   }
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <section className="py-32 relative min-h-screen">
