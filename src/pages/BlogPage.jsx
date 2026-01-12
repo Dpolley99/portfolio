@@ -83,7 +83,7 @@ function BlogPage() {
             "Every line of code, every idea explored, and every experiment attempted tells a story—some triumphant, some flawed, but all worth remembering."
           </p>
           <p className="text-muted-foreground mb-2 text-justify animation-delay-200 max-w-3xl mx-auto text-sm">
-            Welcome to Markup and Musings—a space where ideas, experiments, and reflections live side by side. Here, I explore what building, breaking, and learning have meant to me along the way.
+            Welcome to Markups and Musings—a space where ideas, experiments, and reflections live side by side. Here, I explore what building, breaking, and learning have meant to me along the way.
           </p>
           <p className="text-muted-foreground mb-2 text-justify animation-delay-200 max-w-3xl mx-auto text-sm">
             Many of the projects you’ll read about reached completion, but the most instructive moments often came from constraints, mistakes, and dead ends—the points where growth happens quietly yet profoundly.
