@@ -9,27 +9,31 @@ import {
 } from "lucide-react";
 
 const skills = [
-    "React.js",
-    "React Native",
-    "JavaScript (ES6+)",
-    "TypeScript",
-    "Next JS",
-    "HTML5",
-    "CSS3",
-    "Appwrite",
-    "TMDB API",
-    "REST APIs",
-    "Appwrite Database",
-    "Appwrite Auth",
-    "Git",
-    "GitHub",
-    "VS Code",
-    "npm",
-    "Jest",
-    "Vitest",
-    "GitHub Actions",
-    "Netlify"
-]
+  "React.js",
+  "React Native",
+  "Next.js",
+  "JavaScript (ES6+)",
+  "TypeScript",
+  "HTML5",
+  "CSS3",
+  "Tailwind CSS",
+  "React Router",
+  "React Hooks",
+  "REST APIs",
+  "Appwrite (Auth, Database)",
+  "TMDB API",
+  "Git",
+  "GitHub",
+  "CI/CD",
+  "GitHub Actions",
+  "Jest",
+  "Vitest",
+  "Vite",
+  "ESLint",
+  "Netlify",
+  "npm"
+];
+
 
 const Hero = () => {
   return (

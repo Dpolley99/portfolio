@@ -71,7 +71,7 @@ function BlogPage() {
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
           <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase">
-            My Writing
+           Markups and Musings
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animation-delay-100 text-secondary-foreground">
             Blog{" "}
@@ -79,8 +79,20 @@ function BlogPage() {
               Posts
             </span>
           </h1>
-          <p className="text-muted-foreground animation-delay-200 max-w-3xl mx-auto">
-            This space is where I reflect on what I'm building and learning. I write about software development through hands-on projects—exploring design decisions, problem-solving approaches, and the small details that tend to matter over time. Some posts are technical, others are reflective, but all of them come from building things end to end.
+          <p className="text-muted-foreground mb-4 text-center animation-delay-150 max-w-3xl mx-auto italic text-xs">
+            "Every line of code, every idea explored, and every experiment attempted tells a story—some triumphant, some flawed, but all worth remembering."
+          </p>
+          <p className="text-muted-foreground mb-2 text-justify animation-delay-200 max-w-3xl mx-auto text-sm">
+            Welcome to Markup and Musings—a space where ideas, experiments, and reflections live side by side. Here, I explore what building, breaking, and learning have meant to me along the way.
+          </p>
+          <p className="text-muted-foreground mb-2 text-justify animation-delay-200 max-w-3xl mx-auto text-sm">
+            Many of the projects you’ll read about reached completion, but the most instructive moments often came from constraints, mistakes, and dead ends—the points where growth happens quietly yet profoundly.
+          </p>
+          <p className="text-muted-foreground mb-2 text-justify animation-delay-200 max-w-3xl mx-auto text-sm">
+            I write about software development through end-to-end projects, capturing design decisions, trade-offs, and the subtle details that only reveal their significance over time. Some posts are technical, others reflective—but all are rooted in the act of creating and experimenting.
+          </p>
+          <p className="text-muted-foreground mb-2 text-justify animation-delay-200 max-w-3xl mx-auto text-sm">
+            Over time, this space has expanded beyond code to include product thinking, startup experiments, and the lessons hidden in both success and failure. The goal isn’t polished outcomes—it’s a clear record of reasoning, insight, and curiosity in motion.
           </p>
         </div>
 
