@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Tag, ArrowRight } from 'lucide-react';
+import { Calendar, Tag, ArrowRight, Search, X, Grid3x3, List } from 'lucide-react';
 import { getAllBlogPosts } from '../utils/blogLoader';
 
 function BlogPage() {
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [viewMode, setViewMode] = useState('list'); // 'list' or 'grid'
 
   useEffect(() => {
-
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
     async function loadPosts() {
       try {
         const allPosts = await getAllBlogPosts();
         setPosts(allPosts);
+        setFilteredPosts(allPosts);
       } catch (error) {
         console.error('Error loading blog posts:', error);
       } finally {
@@ -23,6 +26,26 @@ function BlogPage() {
     }
     loadPosts();
   }, []);
+
+  useEffect(() => {
+    if (searchQuery.trim() === '') {
+      setFilteredPosts(posts);
+    } else {
+      const query = searchQuery.toLowerCase();
+      const filtered = posts.filter((post) => {
+        const titleMatch = post.title.toLowerCase().includes(query);
+        const excerptMatch = post.excerpt?.toLowerCase().includes(query);
+        const tagsMatch = post.tags?.some((tag) => tag.toLowerCase().includes(query));
+        
+        return titleMatch || excerptMatch || tagsMatch;
+      });
+      setFilteredPosts(filtered);
+    }
+  }, [searchQuery, posts]);
+
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
 
   if (loading) {
     return (
@@ -36,7 +59,7 @@ function BlogPage() {
     <section className="py-32 relative min-h-screen">
       <div className="absolute top-1/2 left-1/2 w-150 h-120 bg-highlight/7 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
 
-      <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+      <div className="container mx-auto px-6 relative z-10 max-w-6xl">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
           <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase">
@@ -49,74 +72,193 @@ function BlogPage() {
             </span>
           </h1>
           <p className="text-muted-foreground animation-delay-200 max-w-3xl mx-auto">
-            This space is where I reflect on what I’m building and learning. I write about software development through hands-on projects—exploring design decisions, problem-solving approaches, and the small details that tend to matter over time. Some posts are technical, others are reflective, but all of them come from building things end to end.
+            This space is where I reflect on what I'm building and learning. I write about software development through hands-on projects—exploring design decisions, problem-solving approaches, and the small details that tend to matter over time. Some posts are technical, others are reflective, but all of them come from building things end to end.
           </p>
-
         </div>
 
-        {/* Blog Posts List */}
-        {posts.length === 0 ? (
+        {/* Search Bar and View Toggle */}
+        <div className="mb-12 animate-fade-in animation-delay-300">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between max-w-4xl mx-auto mb-4">
+            {/* Search Bar */}
+            <div className="relative flex-1 w-full">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search by title, content, or tags..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-12 py-4 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-foreground placeholder:text-muted-foreground"
+              />
+              {searchQuery && (
+                <button
+                  onClick={clearSearch}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-primary/10 transition-colors"
+                  aria-label="Clear search"
+                >
+                  <X className="w-5 h-5 text-muted-foreground hover:text-primary" />
+                </button>
+              )}
+            </div>
+
+            {/* View Toggle */}
+            <div className="flex gap-2 glass rounded-xl p-1">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-3 rounded-lg transition-all ${
+                  viewMode === 'list'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+                aria-label="List view"
+              >
+                <List className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-3 rounded-lg transition-all ${
+                  viewMode === 'grid'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+                aria-label="Grid view"
+              >
+                <Grid3x3 className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+          
+          {/* Results Count */}
+          {searchQuery && (
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              Found {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'}
+            </p>
+          )}
+        </div>
+
+        {/* Blog Posts */}
+        {filteredPosts.length === 0 ? (
           <div className="text-center text-muted-foreground">
-            No blog posts yet. Check back soon!
+            {searchQuery 
+              ? `No posts found for "${searchQuery}". Try a different search term.`
+              : "No blog posts yet. Check back soon!"}
           </div>
         ) : (
-          <div className="space-y-8">
-            {posts.map((post, index) => (
-              <Link
-                key={post.id}
-                to={`/blog/${post.slug}`}
-                className="block animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <article className="glass rounded-2xl p-8 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:glow-border">
-                  {/* Post Title */}
-                  <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h2>
+          <>
+            {/* List View */}
+            {viewMode === 'list' && (
+              <div className="space-y-8 max-w-4xl mx-auto">
+                {filteredPosts.map((post, index) => (
+                  <Link
+                    key={post.id}
+                    to={`/blog/${post.slug}`}
+                    className="block animate-fade-in"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <article className="glass rounded-2xl p-8 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:glow-border">
+                      <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors">
+                        {post.title}
+                      </h2>
 
-                  {/* Post Meta */}
-                  <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <time dateTime={post.date}>
-                        {new Date(post.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </time>
-                    </div>
-                  </div>
+                      <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          <time dateTime={post.date}>
+                            {new Date(post.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
+                          </time>
+                        </div>
+                      </div>
 
-                  {/* Excerpt */}
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {post.excerpt}
-                  </p>
+                      <p className="text-muted-foreground mb-4 leading-relaxed">
+                        {post.excerpt}
+                      </p>
 
-                  {/* Tags */}
-                  {post.tags && post.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-flex items-center gap-1 text-xs bg-surface px-3 py-1 rounded-full text-muted-foreground"
-                        >
-                          <Tag className="w-3 h-3" />
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                      {post.tags && post.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {post.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="inline-flex items-center gap-1 text-xs bg-surface px-3 py-1 rounded-full text-muted-foreground"
+                            >
+                              <Tag className="w-3 h-3" />
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
 
-                  {/* Read More Link */}
-                  <div className="flex items-center gap-2 text-primary font-medium group">
-                    <span>Read More</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </article>
-              </Link>
-            ))}
-          </div>
+                      <div className="flex items-center gap-2 text-primary font-medium group">
+                        <span>Read More</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </article>
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {/* Grid View */}
+            {viewMode === 'grid' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredPosts.map((post, index) => (
+                  <Link
+                    key={post.id}
+                    to={`/blog/${post.slug}`}
+                    className="block animate-fade-in"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <article className="glass rounded-2xl p-6 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:glow-border h-full flex flex-col">
+                      <h2 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                        {post.title}
+                      </h2>
+
+                      <div className="flex items-center gap-2 mb-3 text-sm text-muted-foreground">
+                        <Calendar className="w-4 h-4" />
+                        <time dateTime={post.date}>
+                          {new Date(post.date).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                        </time>
+                      </div>
+
+                      <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-3 flex-1">
+                        {post.excerpt}
+                      </p>
+
+                      {post.tags && post.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {post.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="inline-flex items-center gap-1 text-xs bg-surface px-2 py-1 rounded-full text-muted-foreground"
+                            >
+                              <Tag className="w-3 h-3" />
+                              {tag}
+                            </span>
+                          ))}
+                          {post.tags.length > 3 && (
+                            <span className="text-xs text-muted-foreground">
+                              +{post.tags.length - 3}
+                            </span>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="flex items-center gap-2 text-primary font-medium text-sm">
+                        <span>Read More</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </article>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>

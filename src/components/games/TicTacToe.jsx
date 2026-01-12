@@ -305,7 +305,7 @@ const TicTacToe = () => {
                   Result: {coinResult.toUpperCase()}
                 </p>
                 <p className={`text-xl ${coinResult === playerChoice ? 'text-green-500' : 'text-red-500'}`}>
-                  {coinResult === playerChoice ? '🎉 You won! You go first with X' : '💻 Computer won! Computer goes first with X'}
+                  {coinResult === playerChoice ? '🎉 You won! You go first with X' : '💻 Computer won! Deba goes first with X'}
                 </p>
               </div>
             )}
