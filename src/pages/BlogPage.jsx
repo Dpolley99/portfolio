@@ -121,7 +121,7 @@ function BlogPage() {
             </div>
 
             {/* View Toggle */}
-            <div className="flex gap-2 glass rounded-xl p-1">
+            <div className="hidden md:flex gap-2 glass rounded-xl p-1">
               <button
                 onClick={() => setViewMode('list')}
                 className={`p-3 rounded-lg transition-all ${
