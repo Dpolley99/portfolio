@@ -38,7 +38,7 @@ const Hero = () => {
 
       <div className="absolute inset-0">
         <img
-          src="/bg-hero-03.jpg"
+          src="/bg-hero-03.webp"
           alt="Hero image"
           className="w-full h-full object-cover opacity-40"
         />
@@ -49,6 +49,7 @@ const Hero = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(35)].map((_, i) => (
           <div
+            key={i}
             className="absolute w-1.5 h-1.5 rounded-full opacity-60"
             style={{
               backgroundColor: "#20B2A6",
@@ -120,9 +121,10 @@ const Hero = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={social.label}
                   className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
                 >
-                  {<social.icon className="w-4 h-4 md:w-5 md:h-5" />}
+                  {<social.icon className="w-5 h-5" />}
                 </a>
               ))}
             </div>
@@ -133,7 +135,7 @@ const Hero = () => {
             <div className="relative max-w-md mx-auto">
               <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/40 via-transparent to-primary/30 blur-2xl animate-pulse" />
               <div className="relative glass rounded-3xl p-2 glow-border">
-                <img src="/profile-photo.jpg" alt="Debarshi Polley" className="w-full aspect-4/5 rounded-2xl" />
+                <img src="/profile-photo.webp" alt="Debarshi Polley" className="w-full aspect-4/5 rounded-2xl" />
 
                 {/* Floating Badge */}
                 <div className="absolute -bottom-4 -left-4 glass rounded-xl px-4 py-3 animate-float">

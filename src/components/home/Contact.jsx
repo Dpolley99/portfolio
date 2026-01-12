@@ -121,6 +121,8 @@ const Contact = () => {
                 <input
                   id="name"
                   type="text"
+                  name="name"
+                  autoComplete="name"
                   required
                   placeholder="Ex: John Doe"
                   value={formData.name}
@@ -134,12 +136,15 @@ const Contact = () => {
               <div>
                 <label
                   htmlFor="email"
-                  type="email"
                   className="block text-sm font-medium mb-2"
                 >
                   Email
                 </label>
                 <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
                   required
                   placeholder="Ex: your@email.com"
                   value={formData.email}
@@ -158,6 +163,7 @@ const Contact = () => {
                   Message
                 </label>
                 <textarea
+                  id="message"
                   rows={5}
                   required
                   value={formData.message}
@@ -213,8 +219,9 @@ const Contact = () => {
               </h3>
               <div className="space-y-4">
                 {contactInfo.map((item, i) => (
-                  <a
+                  <div
                     key={i}
+                    aria-label={item.label}
                     className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
                   >
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -226,7 +233,7 @@ const Contact = () => {
                       </div>
                       <div className="font-medium text-xs md:text-lg">{item.value}</div>
                     </div>
-                  </a>
+                  </div>
                 ))}
               </div>
             </div>
