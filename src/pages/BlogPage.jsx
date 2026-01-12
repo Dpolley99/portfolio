@@ -8,7 +8,10 @@ function BlogPage() {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const [viewMode, setViewMode] = useState('list'); // 'list' or 'grid'
+  const [viewMode, setViewMode] = useState(() => {
+    // Load saved preference from localStorage, default to 'list'
+    return localStorage.getItem('blogViewMode') || 'list';
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -42,6 +45,11 @@ function BlogPage() {
       setFilteredPosts(filtered);
     }
   }, [searchQuery, posts]);
+
+  useEffect(() => {
+    // Save view mode preference to localStorage whenever it changes
+    localStorage.setItem('blogViewMode', viewMode);
+  }, [viewMode]);
 
   const clearSearch = () => {
     setSearchQuery('');
