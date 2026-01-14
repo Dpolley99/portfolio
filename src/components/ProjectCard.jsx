@@ -1,4 +1,5 @@
 import { ArrowUpRight, Github } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ProjectCard = ({ project, idx }) => {
   return (
@@ -21,14 +22,12 @@ const ProjectCard = ({ project, idx }) => {
         />
         {/* Overlay Links */}
         <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
             className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
           >
             <ArrowUpRight className="w-5 h-5" />
-          </a>
+          </Link>
           <a
             href={project.github}
             target="_blank"
@@ -47,13 +46,11 @@ const ProjectCard = ({ project, idx }) => {
             {project.title}
           </h3>
           <div className="flex gap-x-3">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-            </a>
+            </Link>
           </div>
         </div>
         <p className="text-muted-foreground text-sm">
