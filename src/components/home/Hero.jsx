@@ -17,11 +17,13 @@ const skills = [
   "HTML5",
   "CSS3",
   "Tailwind CSS",
+  "ShadCN",
+  "Zustand",
   "React Router",
   "React Hooks",
+  "Sanity CMS",
   "REST APIs",
   "Appwrite (Auth, Database)",
-  "TMDB API",
   "Git",
   "GitHub",
   "CI/CD",
@@ -31,6 +33,7 @@ const skills = [
   "Vite",
   "ESLint",
   "Netlify",
+  "Vercel",
   "npm"
 ];
 
