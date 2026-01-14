@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
+import ProjectsPage from './pages/ProjectsPage';
 import './index.css';
 
 const BlogPage = lazy(() => import('./pages/BlogPage'));
@@ -14,13 +15,16 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/games" element={<GamesPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:id" element={<BlogPostPage />} />
-          <Route path="*" element={<div>404 - Page Not Found</div>} />
-        </Routes>
+        <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/games" element={<GamesPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogPostPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="*" element={<div>404 - Page Not Found</div>} />
+          </Routes>
+        </Suspense>
         <Footer />
       </div>
     </BrowserRouter>
