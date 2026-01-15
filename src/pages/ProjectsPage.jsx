@@ -2,12 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/data/ProjectsList";
+import {  useEffect } from "react";
 
-useEffect(() => {
+const ProjectsPage = () => {
+
+  useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
-const ProjectsPage = () => {
   return (
     <main className="min-h-screen">
       <section className="py-16 md:py-24 relative overflow-hidden">
