@@ -1,7 +1,7 @@
 export const projects = [
   {
     title: "Hushed Ink on Paper",
-    description: "A full-stack, content-driven blog platform. Built with a headless CMS architecture to support dynamic content publishing, anonymous authorship, and a warm, reader-centric interface.",
+    description: "A scalable blog platform built with Next.js and TypeScript, emphasizing performance, maintainability, and content flexibility. Tailwind CSS and ShadCN are used together to balance custom styling with reusable UI components, while Zustand manages shared frontend state. Sanity.io serves as a headless CMS, allowing non-technical users to publish and manage content independently, making the platform suitable for long-term growth and real-world use.",
     image: "/projects/project-05.jpg",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "ShadCN", "Sanity CMS"],
     link: "https://hushedinkonpaper.vercel.app/",
@@ -11,8 +11,7 @@ export const projects = [
   },
   {
     title: "EdgeAI SaaS Landing Page",
-    description:
-      "A modern SaaS landing page with state management using Zustand, responsive design, and optimized performance. Features smooth animations and a clean user interface.",
+    description: "A React and Tailwind CSS landing page created to explore third-party state management solutions in a controlled scope. Zustand is used to implement global UI state for features such as theme toggling, demonstrating scalable and minimal state architecture without unnecessary abstraction. The project focuses on clean separation of UI state, reusable components, and maintaining development momentum through incremental experimentation.",
     image: "/projects/project-01.jpg",
     tags: ["React", "TypeScript", "Tailwind CSS", "Zustand"],
     link: "https://edgeaisaas.netlify.app/",
@@ -22,8 +21,7 @@ export const projects = [
   },
   {
     title: "MovieFlix - Mobile Movie App",
-    description:
-      "An android mobile application for browsing and searching movies using TMDB API. Includes user authentication, database integration, and responsive UI with NativeWind styling.",
+    description: "A React Native mobile application built with Expo that integrates the TMDB API for real-time movie search and trending content. The app includes navigation, authentication via Appwrite Auth, and persistent user-specific saved movies. This project combines API consumption, user state management, and backend integration, and was deployed as an Android APK, marking a full end-to-end mobile development workflow from build to installable release.",
     image: "/projects/project-02.jpg",
     tags: ["React Native", "TypeScript", "Expo", "Appwrite"],
     link: "https://expo.dev/accounts/not_deba/projects/mobile-movie-app/builds/c5f1326e-9d3e-44e1-936f-42a9cc808192",
@@ -33,8 +31,7 @@ export const projects = [
   },
   {
     title: "Brainwave AI SaaS",
-    description:
-      "An AI SaaS landing page showcasing modern web animations and design patterns. Built with React Router for seamless navigation and optimized with Vite for fast performance.",
+    description: "A dynamic SaaS landing page built with React and Tailwind CSS, designed to behave like a multi-section application rather than a static page. React Router DOM is used for section-based navigation, requiring careful coordination between routing, scrolling, and component rendering. The project incorporates scroll-driven interactions and parallax effects, implemented using custom Tailwind classes and React hooks such as useRef to manage DOM-level behavior and motion.",
     image: "/projects/project-03.jpg",
     tags: ["React", "JavaScript", "Tailwind CSS", "React Router"],
     link: "https://jolly-dolphin-cd317f.netlify.app/",
@@ -44,8 +41,7 @@ export const projects = [
   },
   {
     title: "HooBank Landing Page",
-    description:
-      "A responsive banking landing page with automated testing using Vitest and CI/CD pipeline integration. Demonstrates modern frontend development practices and deployment workflows.",
+    description: "A responsive landing page built using React and Tailwind CSS, developed while adapting an older tutorial to modern tooling (React 19 and Tailwind v4). The project involved resolving breaking changes through official documentation and community research, rather than relying on copy-paste solutions. It was later extended with unit and integration tests using Jest and Vitest, alongside a lightweight CI/CD setup that enforces test-validated deployments, introducing disciplined development practices early.",
     image: "/projects/project-04.jpg",
     tags: ["React", "JavaScript", "Tailwind CSS", "Vitest"],
     link: "https://singular-wisp-85b08f.netlify.app/",

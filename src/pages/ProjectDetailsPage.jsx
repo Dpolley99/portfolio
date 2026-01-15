@@ -76,7 +76,7 @@ const ProjectDetailsPage = () => {
             {/* Right: Project Meta */}
             <div>
               {/* Description */}
-              <p className="text-sm text-muted-foreground mb-6">
+              <p className="text-sm xl:text-base text-muted-foreground mb-6">
                 {project.description}
               </p>
 
