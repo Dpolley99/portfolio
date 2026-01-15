@@ -65,7 +65,9 @@ function BlogPage() {
 
   return (
     <section className="py-32 relative min-h-screen">
-      <div className="absolute top-1/2 left-1/2 w-150 h-120 bg-highlight/7 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute top-75 left-1/2 w-150 h-120 bg-highlight/7 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute top-1/2 left-1/2 w-150 h-120 bg-primary/7 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+      <div className="absolute bottom-20 left-1/2 w-150 h-120 bg-primary/7 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 animate-pulse" />
 
       <div className="container mx-auto px-6 relative z-10 max-w-6xl">
         {/* Header */}
