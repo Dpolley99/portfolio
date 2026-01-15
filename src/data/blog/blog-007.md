@@ -1,7 +1,7 @@
 ---
 id: "blog-007"
 title: "What Building Small Games Taught Me About Systems Thinking"
-date: "2026-01-13"
+date: "2026-01-15"
 excerpt: "Building simple games exposed the parts of software engineering that are easy to ignore: state, boundaries, and failure modes. This is a technical reflection on how small systems teach big lessons."
 tags: ["React", "Systems Thinking", "Game Logic", "Frontend Engineering", "Problem Solving"]
 ---
